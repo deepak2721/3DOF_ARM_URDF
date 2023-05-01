@@ -1,0 +1,115 @@
+<!-- <?xml version="1.0" ?> -->
+<robot name="updated_urdf_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<!-- 
+<xacro:include filename="$(find updated_urdf_model_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find updated_urdf_model_description)/urdf/updated_urdf_model.trans" />
+<xacro:include filename="$(find updated_urdf_model_description)/urdf/updated_urdf_model.gazebo" /> -->
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.03699976159111437 2.107137190130755e-12 0.0024999999999999576" rpy="0 0 0"/>
+    <mass value="2.2016928137587"/>
+    <inertia ixx="0.009089" iyy="0.011665" izz="0.020745" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://updated_urdf_model_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://updated_urdf_model_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="base_rot_1">
+  <inertial>
+    <origin xyz="0.029378517969636406 0.00040312085777323864 0.056678397843377595" rpy="0 0 0"/>
+    <mass value="11.187547108993652"/>
+    <inertia ixx="0.035588" iyy="0.066881" izz="0.072998" ixy="-0.000415" iyz="-5.6e-05" ixz="-0.004536"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 0.0 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://updated_urdf_model_description/meshes/base_rot_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 0.0 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://updated_urdf_model_description/meshes/base_rot_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="arm1_1">
+  <inertial>
+    <origin xyz="0.03187716153945208 0.02528127842485809 0.06591431829133973" rpy="0 0 0"/>
+    <mass value="4.105612175342894"/>
+    <inertia ixx="0.010761" iyy="0.018729" izz="0.009815" ixy="-0.000127" iyz="-0.000128" ixz="-0.006504"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.101737 0.023889 -0.127799" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://updated_urdf_model_description/meshes/arm1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.101737 0.023889 -0.127799" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://updated_urdf_model_description/meshes/arm1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="arm2_1">
+  <inertial>
+    <origin xyz="0.07328522944310023 0.02100843836020138 -0.07001250852081423" rpy="0 0 0"/>
+    <mass value="4.811155320953158"/>
+    <inertia ixx="0.030913" iyy="0.041034" izz="0.011409" ixy="-0.000128" iyz="0.00019" ixz="0.014862"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.251552 0.016869 -0.258391" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://updated_urdf_model_description/meshes/arm2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.251552 0.016869 -0.258391" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://updated_urdf_model_description/meshes/arm2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 4" type="revolute">
+  <origin xyz="0.0 0.0 0.005" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="base_rot_1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Revolute 5" type="revolute">
+  <origin xyz="0.101737 -0.023889 0.122799" rpy="0 0 0"/>
+  <parent link="base_rot_1"/>
+  <child link="arm1_1"/>
+  <axis xyz="0.013476 -0.999909 -0.0"/>
+  <limit upper="0.523599" lower="-1.047198" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Revolute 6" type="revolute">
+  <origin xyz="0.149815 0.00702 0.130592" rpy="0 0 0"/>
+  <parent link="arm1_1"/>
+  <child link="arm2_1"/>
+  <axis xyz="-0.013476 0.999909 0.0"/>
+  <limit upper="0.349066" lower="-1.570796" effort="100" velocity="100"/>
+</joint>
+
+</robot>
